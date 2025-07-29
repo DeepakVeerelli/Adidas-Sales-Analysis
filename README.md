@@ -1,8 +1,8 @@
 # Adidas Sales Analysis
 
-This project provides an end-to-end workflow for analyzing Adidas sales data, leveraging Excel (Power Query) for robust data cleaning and transformation, and Power BI for building dynamic, interactive dashboards powered by DAX formulas. The objective is to empower stakeholders with actionable insights, enabling smarter decisions across products, regions, and overall sales performance.
+This project provides an end-to-end workflow for analyzing Adidas sales data, leveraging Excel (Power Query) for data cleaning and transformation, and Power BI for building dynamic, interactive dashboards powered by DAX formulas. The objective is to empower stakeholders with actionable insights, enabling smarter decisions across products, regions, and overall sales performance.
 
-## 📁 Table of Contents
+## Table of Contents
 - [Overview](#overview)
 - [Workflow](#workflow)
 - [Dataset](#dataset)
@@ -14,28 +14,29 @@ This project provides an end-to-end workflow for analyzing Adidas sales data, le
 - [Contributing](#contributing)
 - [License](#license)
 
-## 🔍 Overview
+## Overview
 Transform raw Adidas sales data into actionable business intelligence by:
 - Cleaning and standardizing data in Excel using Power Query
-- Visualizing key trends and metrics in Power BI dashboards
 - Calculating KPIs (e.g., total revenue, units sold, sales growth) with DAX formulas
+- Visualizing key trends and metrics in Power BI dashboards
 
-## 🔄 Workflow
+## Workflow
 1. Import raw sales data into Excel
 2. Clean and transform data using Power Query
 3. Export the cleaned data to Power BI
-4. Build interactive dashboards—filters, drill-throughs, time-series analysis
-5. Create DAX measures for dynamic KPIs and trends
-6. Generate insights into sales, regional, and product performance
+4. Create DAX measures for dynamic KPIs and trend
+5. Build interactive dashboards,filters, drill-throughs, time-series analysis
+7. Generate insights into sales, regional, and product performance
 
-## 📊 Dataset
-- **Format:** CSV or Excel
-- **Fields:** Date, Region, Product, Units Sold, Revenue, Price, and more
-- **Location:** See the `data/` folder for sample files
+## Dataset
+- **Format:** Excel
+- **Fields:** Invoice Date,Product, Units Sold and more
+- **Location:** See the sample files
 
-## 🧹 Data Cleaning & Preparation (Excel Power Query)
+## Data Cleaning & Preparation (Excel Power Query)
 **Key Steps:**
 - Remove duplicates
+- Creates related columns
 - Standardize date and numeric formats
 - Address missing or invalid values
 - Merge and group data where required
@@ -45,52 +46,46 @@ Transform raw Adidas sales data into actionable business intelligence by:
 - Use Power Query Editor to clean and shape your data
 - Export the result as `.xlsx` or `.csv` for Power BI import
 
-## 📈 Power BI Dashboards
+## Power BI Dashboards
 **Dashboards include:**
 - **Sales Overview:** Total revenue, units sold, profit trends
 - **Top Products & Regions:** Performance rankings
-- **Time-Series Analysis:** Monthly, quarterly, and yearly comparisons
 - **Filters & Drill-throughs:** Deep-dives by category or region
 - **Custom Visuals:** Slicers, tooltips, cards for interactive analysis
 
-Check the `dashboards/` folder for `.pbix` files or screenshots.
+Check the `PowerBi dashboards/` folder for `.pbix` files or screenshots.
 
-## 📊 DAX Formulas
+## DAX Formulas
 Sample DAX measures used in Power BI:
 
 ```dax
-Total Sales = SUM('Sales'[Revenue])
-Units Sold = SUM('Sales'[Units Sold])
-Average Sales = AVERAGE('Sales'[Revenue])
-Yearly Sales Growth = CALCULATE([Total Sales], DATESYTD('Sales'[Date]))
-Top Product = CALCULATE(
-    MAX('Sales'[Product]),
-    FILTER('Sales', 'Sales'[Revenue] = [Total Sales])
+Total Customers = COUNTROWS(telecom_combined)
+Average MonthlyCharges = AVERAGE(telecom_combined[MonthlyCharges])
+Churned customers = CALCULATE(COUNTROWS(telecom_combined),telecom_combined[Churn]="Yes")
+Churned Rate = DIVIDE([Churned customers],[Total Customers])
 )
 ```
-Find additional measures and dynamic KPIs in the `dax/` folder.
 
-## ✅ Results & Insights
+## Results & Insights
 This analysis reveals:
 - Top-performing regions and product categories
-- Periods with sales drop-offs or spikes
 - Opportunities for inventory planning and marketing optimization
 - Recommendations to focus on high-margin regions and bundled offers
 
-## 🚀 How to Use
+## How to Use
 1. Clone the repository or download as ZIP
 2. Place your raw sales file in the `data/` folder
 3. Open `Adidas_Sales_Cleaning.xlsx` and clean data using Power Query
 4. Load the cleaned data into `Adidas_Sales_Analysis.pbix`
 5. Explore dashboards and DAX measures for insights
 
-## 🤝 Contributing
+## Contributing
 Contributions are welcome! You can:
 - Add sample datasets
 - Suggest improved visuals or KPIs
 - Report or fix data transformation bugs
 
-## 📜 License
+## License
 This project is licensed under the MIT License. See the `LICENSE` file for details.
 
 ---
